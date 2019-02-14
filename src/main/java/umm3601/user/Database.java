@@ -18,11 +18,14 @@ import java.util.Map;
 public class Database {
 
   private User[] allUsers;
+  private Todo[] allTodos;
 
-  public Database(String userDataFile) throws IOException {
+  public Database(String userDataFile, String todoDataFile) throws IOException {
     Gson gson = new Gson();
     FileReader reader = new FileReader(userDataFile);
     allUsers = gson.fromJson(reader, User[].class);
+    FileReader reader2 = new FileReader(todoDataFile);
+    allTodos = gson.fromJson(reader2, Todo[].class);
   }
 
   /**
@@ -35,6 +38,9 @@ public class Database {
    */
   public User getUser(String id) {
     return Arrays.stream(allUsers).filter(x -> x._id.equals(id)).findFirst().orElse(null);
+  }
+  public Todo getTodo(String id) {
+    return Arrays.stream(allTodos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
   }
 
   /**
@@ -55,6 +61,18 @@ public class Database {
 
     return filteredUsers;
   }
+  public Todo[] listTodos(Map<String, String[]> queryParams) {
+    Todo[] filteredTodos = allTodos;
+
+    // Filter owner if defined
+    if (queryParams.containsKey("owner")) {
+      String targetOwner = queryParams.get("owner")[0];
+      filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
+    }
+    // Process other query parameters here...
+
+    return filteredTodos;
+  }
 
   /**
    * Get an array of all the users having the target age.
@@ -67,5 +85,7 @@ public class Database {
   public User[] filterUsersByAge(User[] users, int targetAge) {
     return Arrays.stream(users).filter(x -> x.age == targetAge).toArray(User[]::new);
   }
-
+  public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
+    return Arrays.stream(todos).filter(x -> x.owner == targetOwner).toArray(Todo[]::new);
+  }
 }

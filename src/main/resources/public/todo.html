@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" type="text/css" href="css/todo.css">
+  <script type="text/javascript" src="javascript/todos.js"></script>
 </head>
 <body>
+<button type="button" id="getAll">Get All Todos</button>
 
+<hr/>
+
+<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
+
+<label for="owner">owner:</label><input id="owner" type="text" name="owner">
+<button type="button" id="getUsersByOwner"> get todos by owner</button>
+
+<script>
+  window.onload = function () {
+    console.log("The page is loaded now!");
+
+    var element = document.getElementById('getAll');
+    element.addEventListener("click", getAllTodos, true);
+
+    element = document.getElementById('getTodosByOwner');
+    element.addEventListener("click", getAllTodosByOwner, true);
+  }
+</script>
 </body>
 </html>
