@@ -16,6 +16,9 @@
 
 <label for="owner">owner:</label><input id="owner" type="text" name="owner">
 <button type="button" id="getTodosByOwner"> get todos by owner</button>
+<p></p>
+<label for="category">category:</label><input id="category" type="text" name="category">
+<button type="button" id="getTodosByCategory"> get todos by category</button>
 
 <script>
   window.onload = function () {
@@ -26,6 +29,9 @@
 
     element = document.getElementById('getTodosByOwner');
     element.addEventListener("click", getAllTodosByOwner, true);
+
+    element = document.getElementById('getTodosByCategory');
+    element.addEventListener("click", getAllTodosByCategory, true);
   }
 </script>
 </body>

@@ -44,8 +44,16 @@ public class Database {
    * @return the todo with the given owner, or null if there is no todo
    * with that owner
    */
-  public Todo getTodo(String owner) {
+  public Todo getTodoOwner(String owner) {
     return Arrays.stream(allTodos).filter(x -> x.owner.equals(owner)).findFirst().orElse(null);
+  }
+  /**
+   * @param category the owner of the desired todo
+   * @return the todo with the given owner, or null if there is no todo
+   * with that owner
+   */
+  public Todo getTodoCategory(String category) {
+    return Arrays.stream(allTodos).filter(x -> x.category.equals(category)).findFirst().orElse(null);
   }
 
   /**
@@ -80,6 +88,10 @@ public class Database {
       String targetOwner = queryParams.get("owner")[0];
       filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
+    if (queryParams.containsKey("category")) {
+      String targetCategory = queryParams.get("category")[0];
+      filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
+    }
     // Process other query parameters here...
 
     return filteredTodos;
@@ -106,5 +118,8 @@ public class Database {
    */
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
     return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
+  }
+  public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
+    return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
   }
 }

@@ -39,10 +39,10 @@ public class TodoController {
    * @return a success JSON object if the todo with that owner is found, a fail
    * JSON object if no todo with that owner is found
    */
-  public JsonObject getTodo(Request req, Response res) {
+  public JsonObject getTodoOwner(Request req, Response res) {
     res.type("application/json");
     String owner = req.params("owner");
-    Todo todo = database.getTodo(owner);
+    Todo todo = database.getTodoOwner(owner);
     if (todo != null) {
       return buildSuccessJsonResponse("todo", gson.toJsonTree(todo));
     } else {
@@ -50,7 +50,17 @@ public class TodoController {
       return buildFailJsonResponse("owner", message);
     }
   }
-
+  public JsonObject getTodoCategory(Request req, Response res) {
+    res.type("application/json");
+    String category = req.params("category");
+    Todo todo = database.getTodoCategory(category);
+    if (todo != null) {
+      return buildSuccessJsonResponse("todo", gson.toJsonTree(todo));
+    } else {
+      String message = "Todo with Owner " + category + " wasn't found.";
+      return buildFailJsonResponse("category", message);
+    }
+  }
   /**
    * Get a JSON response with a list of all the todos in the "database".
    *

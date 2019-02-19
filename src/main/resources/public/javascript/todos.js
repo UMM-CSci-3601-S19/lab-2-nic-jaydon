@@ -23,6 +23,15 @@ function getAllTodosByOwner() {
   });
 }
 
+function getAllTodosByCategory() {
+  console.log("Getting all the todos for searched category.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?category=" + document.getElementById("category").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
  * somewhere else in the future!.
