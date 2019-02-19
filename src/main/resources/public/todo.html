@@ -12,8 +12,6 @@
 
 <hr/>
 
-<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
-
 <label for="owner">owner:</label><input id="owner" type="text" name="owner">
 <button type="button" id="getTodosByOwner"> get todos by owner</button>
 <p></p>
@@ -22,6 +20,14 @@
 <p></p>
 <label for="status">status:</label><input id="status" type="text" name="status">
 <button type="button" id="getTodosByStatus"> get todos by status</button>
+<p></p>
+<label for="body">body:</label><input id="body" type="text" name="body">
+<button type="button" id="getTodosByBody"> get todos by body</button>
+<p></p>
+<label for="limit">limit:</label><input id="limit" type="text" name="limit">
+<button type="button" id="getTodosByLimit"> get todos by limit</button>
+
+<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
 <script>
   window.onload = function () {
@@ -38,6 +44,12 @@
 
     element = document.getElementById('getTodosByStatus');
     element.addEventListener("click", getAllTodosByStatus, true);
+
+    element = document.getElementById('getTodosByBody');
+    element.addEventListener("click", getAllTodosByBody, true);
+
+    element = document.getElementById('getTodosByLimit');
+    element.addEventListener("click", getTodosByLimit, true);
   }
 </script>
 </body>
