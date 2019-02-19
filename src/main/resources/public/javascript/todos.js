@@ -3,22 +3,22 @@
 // for the second definition?
 
 /**
- * Function to get all the users!
+ * Function to get all the todos!
  */
-function getAllUsers() {
-  console.log("Getting all the users.");
+function getAllTodos() {
+  console.log("Getting all the todos.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/users", function (returned_json) {
+  HttpThingy.get("/api/todos", function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
 
-function getAllUsersByAge() {
-  console.log("Getting all the users.");
+function getAllTodosByOwner() {
+  console.log("Getting all the todos.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/users?age=" + document.getElementById("age").value, function (returned_json) {
+  HttpThingy.get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
