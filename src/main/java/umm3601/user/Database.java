@@ -112,7 +112,7 @@ public class Database {
    * Get an array of all the users having the target age.
    *
    * @param todos     the list of users to filter by age
-   * @param targetOwner the target age to look for
+   * @param targetOwner the target owner to look for
    * @return an array of all the users from the given list that have
    * the target age
    */
@@ -121,5 +121,8 @@ public class Database {
   }
   public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
     return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
+  }
+  public Todo[] filterTodosByStatus(Todo[] todos, boolean targetStatus){
+    return Arrays.stream(todos).filter(x -> x.status.equals(targetStatus)).toArray(Todo[]::new);
   }
 }

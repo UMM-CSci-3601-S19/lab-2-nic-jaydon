@@ -15,10 +15,13 @@ public class FilterTodosByCategory {
     Database db = new Database("src/main/data/users.json","src/main/data/todos.json");
     Todo[] allTodos = db.listTodos(new HashMap<>());
 
-    Todo[] videoGameUsers = db.filterTodosByCategory(allTodos,"video games");
-    assertEquals("Incorrect number of todos in the category Video Games", 71, videoGameUsers.length);
+    Todo[] videoGameTodos = db.filterTodosByCategory(allTodos,"video games");
+    assertEquals("Incorrect number of todos in the category Video Games", 71, videoGameTodos.length);
 
     Todo[] softwareDesignTodos = db.filterTodosByCategory(allTodos, "software design");
     assertEquals("Incorrect number of todos in the category Software Design", 74, softwareDesignTodos.length);
+
+    Todo[] groceriesTodos = db.filterTodosByCategory(allTodos, "groceries");
+    assertEquals("Incorrect number of todos in the category Groceries", 76, groceriesTodos.length);
   }
 }

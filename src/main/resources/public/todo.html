@@ -19,6 +19,9 @@
 <p></p>
 <label for="category">category:</label><input id="category" type="text" name="category">
 <button type="button" id="getTodosByCategory"> get todos by category</button>
+<p></p>
+<label for="status">status:</label><input id="status" type="text" name="status">
+<button type="button" id="getTodosByStatus"> get todos by status</button>
 
 <script>
   window.onload = function () {
@@ -32,6 +35,9 @@
 
     element = document.getElementById('getTodosByCategory');
     element.addEventListener("click", getAllTodosByCategory, true);
+
+    element = document.getElementById('getTodosByStatus');
+    element.addEventListener("click", getAllTodosByStatus, true);
   }
 </script>
 </body>

@@ -9,7 +9,7 @@ function getAllTodos() {
   console.log("Getting all the todos.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todo", function (returned_json) {
+  HttpThingy.get("/api/todos", function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
@@ -28,6 +28,15 @@ function getAllTodosByCategory() {
 
   var HttpThingy = new HttpClient();
   HttpThingy.get("/api/todos?category=" + document.getElementById("category").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function getAllTodosByStatus() {
+  console.log("Getting all the todos for searched status.");
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?status=" + document.getElementById("status").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
