@@ -24,7 +24,7 @@ public class TodoController {
    * stores that internally so that (subsets of) todos can be returned
    * in response to requests.
    *
-   * @param database base the database containing todo data
+   * @param database the database containing todo data
    */
   public TodoController(Database database) {
     gson = new Gson();
@@ -32,22 +32,22 @@ public class TodoController {
   }
 
   /**
-   * Get the single todo specified by the `id` parameter in the request.
+   * Get the single todo specified by the `owner` parameter in the request.
    *
    * @param req the HTTP request
    * @param res the HTTP response
-   * @return a success JSON object if the todo with that ID is found, a fail
-   * JSON object if no todo with that ID is found
+   * @return a success JSON object if the todo with that owner is found, a fail
+   * JSON object if no todo with that owner is found
    */
   public JsonObject getTodo(Request req, Response res) {
     res.type("application/json");
-    String id = req.params("id");
-    Todo todo = database.getTodo(id);
+    String owner = req.params("owner");
+    Todo todo = database.getTodo(owner);
     if (todo != null) {
       return buildSuccessJsonResponse("todo", gson.toJsonTree(todo));
     } else {
-      String message = "Todo with ID " + id + " wasn't found.";
-      return buildFailJsonResponse("id", message);
+      String message = "Todo with Owner " + owner + " wasn't found.";
+      return buildFailJsonResponse("owner", message);
     }
   }
 

@@ -39,8 +39,13 @@ public class Database {
   public User getUser(String id) {
     return Arrays.stream(allUsers).filter(x -> x._id.equals(id)).findFirst().orElse(null);
   }
-  public Todo getTodo(String id) {
-    return Arrays.stream(allTodos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
+  /**
+   * @param owner the owner of the desired todo
+   * @return the todo with the given owner, or null if there is no todo
+   * with that owner
+   */
+  public Todo getTodo(String owner) {
+    return Arrays.stream(allTodos).filter(x -> x.owner.equals(owner)).findFirst().orElse(null);
   }
 
   /**
@@ -61,6 +66,12 @@ public class Database {
 
     return filteredUsers;
   }
+  /**
+   * Get an array of all the users satisfying the queries in the params.
+   *
+   * @param queryParams map of required key-value pairs for the query
+   * @return an array of all the users matching the given criteria
+   */
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
@@ -85,7 +96,15 @@ public class Database {
   public User[] filterUsersByAge(User[] users, int targetAge) {
     return Arrays.stream(users).filter(x -> x.age == targetAge).toArray(User[]::new);
   }
+  /**
+   * Get an array of all the users having the target age.
+   *
+   * @param todos     the list of users to filter by age
+   * @param targetOwner the target age to look for
+   * @return an array of all the users from the given list that have
+   * the target age
+   */
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
-    return Arrays.stream(todos).filter(x -> x.owner == targetOwner).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
   }
 }

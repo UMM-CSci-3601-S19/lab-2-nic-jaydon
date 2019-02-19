@@ -15,7 +15,7 @@ function getAllTodos() {
 }
 
 function getAllTodosByOwner() {
-  console.log("Getting all the todos.");
+  console.log("Getting all the todos for searched owner.");
 
   var HttpThingy = new HttpClient();
   HttpThingy.get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
